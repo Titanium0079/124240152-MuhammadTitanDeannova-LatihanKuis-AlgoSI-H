@@ -1,20 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include <cctype> // Untuk tolower()
+#include <cctype> // Library untuk fungsi tolower
 #include <iomanip>
-
 using namespace std;
 
+//Struct data untuk simpan informasi buku
 struct data_buku {
-    char ID[20];
-    char judul[100];
-    char penulis[100];
-    int stok;
+    char ID[20]; 
+    char judul[100];  
+    char penulis[100]; 
+    int stok;  
 };
 
-data_buku buku[100];
-int jumlah_buku = 0;
+data_buku buku[100]; // Array untuk menyimpan daftar buku
+int jumlah_buku = 0;  // Jumlah buku dalam database
 
 // Fungsi untuk mengubah string menjadi huruf kecil
 void toLowerCase(char str[]) {
@@ -23,6 +23,7 @@ void toLowerCase(char str[]) {
     }
 }
 
+// Fungsi untuk menyimpan daftar buku ke dalam file "data.dat"
 void simpan_ke_file() {
     ofstream file("data.dat"); // Mode teks
     if (!file) {
@@ -30,6 +31,7 @@ void simpan_ke_file() {
         return;
     }
 
+  // Menulis setiap buku ke dalam file
     for (int i = 0; i < jumlah_buku; i++) {
         file << buku[i].ID << endl;
         file << buku[i].judul << endl;
@@ -39,6 +41,7 @@ void simpan_ke_file() {
     file.close();
 }
 
+// Fungsi untuk membaca daftar buku dari file "data.dat"
 void baca_dari_file() {
     ifstream file("data.dat"); // Mode teks
     if (!file) {
@@ -58,6 +61,7 @@ void baca_dari_file() {
     file.close();
 }
 
+// Fungsi untuk mencari buku berdasarkan judul
 void cari_buku() {
     bool found = false;
     char cari_nama[100];
@@ -86,6 +90,7 @@ void cari_buku() {
     }
 }
 
+// Fungsi untuk menambahkan data buku baru
 void tambah_data_buku() {
     cout << "\n===== Tambah data buku =====\n";
     cout << "ID buku: ";
@@ -102,6 +107,7 @@ void tambah_data_buku() {
     cout << "\nBuku berhasil ditambahkan!\n";
 }
 
+// Fungsi untuk mengurutkan buku berdasarkan ID menggunakan Bubble Sort
 void sort_data_buku() {
     bool swapped;
     do {
@@ -115,6 +121,7 @@ void sort_data_buku() {
     } while (swapped);
 }
 
+// Fungsi untuk menghapus data buku berdasarkan ID
 void hapus_data_buku() {
     char ID_hapus[20];
     cout << "Masukkan ID buku yang ingin dihapus: ";
@@ -142,6 +149,7 @@ void hapus_data_buku() {
     cout << "Buku berhasil dihapus!\n";
 }
 
+// Fungsi untuk menampilkan daftar buku
 void tampilkan_data_buku() {
     cout << "\n===== Daftar Buku =====\n";
     if (jumlah_buku == 0) {
@@ -157,6 +165,7 @@ void tampilkan_data_buku() {
     }
 }
 
+// Fungsi menu utama
 void menu(const string &username) {
     int pilih;
     do {
